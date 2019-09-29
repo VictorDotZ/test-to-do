@@ -1,0 +1,22 @@
+<h1>Задачи</h1>
+<% @projects.each do |project| %>
+  <h3 style="text-transform:uppercase" ><%= project.title %></h3>
+  <ul>
+  <% project.todos.each do |todo| %>
+    <li><%= todo.text %></li>
+  <% end %>
+  </ul>
+<% end %>
+
+<div>
+  <h2 style="text-transform:uppercase" > Новая задача </h2>
+  <%= form_for @todo, url: {controller: "todos", action: "create"} do |f| %>
+  <p>
+    <%= f.label :text%>
+    <%= f.text_field :text %>
+  </p>
+  <p><%= f.collection_select(:project, Project.all, :id, :title) %></p>
+  <p><%= f.submit "OK" %></p>
+  <% end %>
+</div>
+  
