@@ -7,7 +7,7 @@ class TodosController < ApplicationController
   def create
     @todo = Todo.new({
       :text => todo_params[:text],
-      :project => Project.find(todo_params[:project_id].to_i)
+      :project => Project.find(todo_params[:project_id])
       })
     if (todo_params[:text] != "")
       @todo.save
