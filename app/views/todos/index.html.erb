@@ -8,15 +8,14 @@
   </ul>
 <% end %>
 
-<div>
+<%= image_submit_tag "addTodoIcon.png", :class => "showing_btn" %>
+
+<div class="formDiv" style="display:none">
   <h2 style="text-transform:uppercase" > Новая задача </h2>
-  <%= form_for @todo, url: {controller: "todos", action: "create"} do |f| %>
-  <p>
-    <%= f.label :text%>
-    <%= f.text_field :text %>
-  </p>
-  <p><%= f.collection_select(:project, Project.all, :id, :title) %></p>
-  <p><%= f.submit "OK" %></p>
+  <%= form_for @todo, url: {controller: "todos", action: "create"}, html: {:id => "new_todo_form"} do |f| %>
+  <p><%= f.text_field :text, :placeholder => "Название задачи..." %></p>
+  <p><%= f.collection_select(:project_id, Project.all, :id, :title) %></p>
+  <%= link_to "ОТМЕНА", "", :class => "hiding_btn" %>
+  <%= link_to "OK", "", :class => "submit_link" %>
   <% end %>
 </div>
-  
