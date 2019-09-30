@@ -5,13 +5,20 @@ class TodosController < ApplicationController
   end
 
   def create
-    @todo = Todo.new({"text" => params[:todo][:text], "project" => Project.find(params[:todo][:project].to_i)})
-    if (params[:todo][:text] != "")
+    @todo = Todo.new({
+      :text => todo_params[:text],
+      :project => Project.find(todo_params[:project_id].to_i)
+      })
+    if (todo_params[:text] != "")
       @todo.save
     end
     redirect_to root_path
   end
 
   def update
+  end
+
+  private def todo_params
+    params.require(:todo).permit(:text, :project_id)
   end
 end
