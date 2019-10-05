@@ -1,21 +1,60 @@
-<h1>Задачи</h1>
-<% @projects.each do |project| %>
-  <h3 style="text-transform:uppercase" ><%= project.title %></h3>
-  <ul>
-  <% project.todos.each do |todo| %>
-    <li><%= todo.text %></li>
-  <% end %>
-  </ul>
-<% end %>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.10/js/select2.min.js"></script>
 
-<%= image_submit_tag "addTodoIcon.png", :class => "showing_btn" %>
-
-<div class="formDiv" style="display:none">
-  <h2 style="text-transform:uppercase" > Новая задача </h2>
-  <%= form_for @todo, url: {controller: "todos", action: "create"}, html: {:id => "new_todo_form"} do |f| %>
-  <p><%= f.text_field :text, :placeholder => "Название задачи..." %></p>
-  <p><%= f.collection_select(:project_id, Project.all, :id, :title) %></p>
-  <%= link_to "ОТМЕНА", "", :class => "hiding_btn" %>
-  <%= link_to "OK", "", :class => "submit_link" %>
-  <% end %>
+<div class="main-title">
+  <h1>Задачи</h1>
+  <div class="showing_btn-box">
+    <%= image_submit_tag "addTodoIcon.png", :class => "showing_btn" %>
+  </div>
 </div>
+
+<div class="container-fluid nice-padding">
+  <div class="row">
+    <% @projects.each do |project| %>
+    <div class="col-lg-4 col-md-6 col-12">
+      <div class="todo-card">
+        <h3><%= project.title %></h3>
+        <ul class="todo-list">
+        <% project.todos.order("created_at asc").each do |todo| %>
+          <li class="todo-text">
+            <label class="checkbox">
+              <%= form_for @todo, url: {controller: "todos", action: "update"},
+                                  html:{:class => "submit-checkbox", :id => "todo-id-" + todo.id.to_s},
+                                  :method => :PATCH do |f| %>
+                <%= hidden_field_tag :todo_id, todo.id %>
+                <input type="checkbox" <%= "checked" if todo.isCompleted %>>
+                <span class="label-text"><%= todo.text %><span class="icon-check"></span></span>
+              <% end %>
+            </label>
+          </li>
+        <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
+  </div>
+</div>
+
+
+<div class="formDiv-wrapper">
+  <div class="formDiv">
+    <h2> Новая задача </h2>
+    <%= form_for @todo, url: {controller: "todos", action: "create"}, html: {:id => "new_todo_form"} do |f| %>
+      <p class="task-text-input-box">
+        <%= f.text_field :text, :placeholder => "Название задачи..." %>
+      </p>
+      <div class="project-selection-box">
+        <%= f.collection_select(:project_id, Project.all, :id, :title, { include_blank: true }, {:class => "project-selection"}) %>
+      </div>
+      <div class="button-box">
+        <div class="hiding_btn-box">
+          <%= link_to "ОТМЕНА", "", :class => "hiding_btn" %>
+        </div>
+        <div class="submit_link-box">
+          <%= link_to "OK", "", :class => "submit_link", :style => "text-decoration: none;" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+
+

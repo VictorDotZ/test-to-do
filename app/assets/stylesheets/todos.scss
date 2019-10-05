@@ -1,3 +1,185 @@
 // Place all the styles related to the Todos controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+@font-face {
+  font-family: "OpenSans-Regular";
+  src: url('/assets/OpenSans-Regular');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "OpenSans-Regular" !important;
+  background-color: #f8f8f8;
+}
+
+.main-title {
+  height: 5em;
+  background-color: #18b1da;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.main-title h1 {
+  margin: 0;
+  color: white;
+}
+
+.showing_btn-box {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+}
+
+.todo-card {
+  margin-top: 30px; 
+  padding: 0;
+  background-color: white;
+  -webkit-box-shadow: 1px 3px 8px 2px rgba(0,0,0,0.7);
+  -moz-box-shadow: 1px 3px 8px 2px rgba(0,0,0,0.7);
+  box-shadow: 1px 3px 8px 2px rgba(0,0,0,0.7);
+}
+
+.todo-card h3 {
+  margin: 0;
+  padding: 1.5%;
+  vertical-align: middle;
+  text-transform: uppercase;
+  border-bottom: 1px solid;
+}
+
+.todo-list {
+  padding-left: 0;
+  padding-top: 1%;
+  padding-bottom: 1%;
+  line-height: 2.6em;
+  list-style-type: none;
+}
+
+.todo-text {
+  padding-left: 2.5%;
+}
+
+.label-text {
+  vertical-align: middle;
+  padding-left: 1.5%;
+}
+
+div.icheckbox_square-blue.checked + span.label-text {
+  text-decoration: line-through;
+}
+
+.container-fluid.nice-padding {
+  padding: 0px 30px;
+  z-index: 1;
+}
+
+.formDiv-wrapper {
+  position: fixed;
+  top: 0;
+  min-width: 100%;
+  min-height: 100%;
+  display: none;
+  justify-content: center;
+  align-items: center; 
+  background-color: rgba(0,0,0,.7);
+  z-index: 5;
+}
+
+.formDiv {
+  display: none;
+  width: 30%;
+  background-color: white;
+  z-index: 10;
+}
+
+.formDiv h2 {
+  margin: 0;
+  padding: 1.5%;
+  vertical-align: middle;
+  text-transform: uppercase;
+  text-align: center;
+  border-bottom: 1px solid;
+}
+
+#todo_text {
+  margin:  5% 5% 0 5% ;
+  width: 90%;
+  height: 40px;
+}
+
+.project-selection-box {
+  margin: 5% 5% 0 5%;
+  width: 90%;
+}
+
+.select2-selection, .select2-selection__rendered, .select2-selection__arrow {
+  height: 40px !important;
+  span {
+    line-height: 40px !important;
+    text-align: left;
+  }
+}
+
+.select2-selection {
+  border-radius: 0 !important;
+}
+
+.button-box {
+  margin: 5% 5% 0% 5%;
+  padding-bottom: 5%;
+  width: 90%;
+  height: 60px;
+}
+
+.hiding_btn-box {
+  display: table;
+  background: gray;
+  height: 100%;
+  width: 47.5%;
+  float: left;
+}
+
+.hiding_btn-box a {
+  height: 100%;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.hiding_btn, .hiding_btn:hover, .hiding_btn:visited, .hiding_btn:active {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
+
+.submit_link-box {
+  display: table;
+  background: #18b1da;
+  height: 100%;
+  width: 47.5%;
+  float: right;
+}
+
+.submit_link-box a {
+  height: 100%;
+  width: 100%;
+  display: table-cell;
+  vertical-align: middle;
+  text-align: center;
+}
+
+.submit_link, .submit_link:hover, .submit_link:visited, .submit_link:active {
+  text-decoration: none;
+  color: white;
+  font-weight: bold;
+}
