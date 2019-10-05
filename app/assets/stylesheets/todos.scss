@@ -4,7 +4,7 @@
 
 @font-face {
   font-family: "OpenSans-Regular";
-  src: font-url('/assets/OpenSans-Regular');
+  src: font-url(asset-path('OpenSans-Regular'));
   font-weight: normal;
   font-style: normal;
 }
