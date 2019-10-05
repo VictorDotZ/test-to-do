@@ -16,4 +16,7 @@ module TestToDo
     # -- all .rb files in that directory are automatically loaded after loading
     # the framework and any gems in your application.
   end
+
+  config.assets.enabled = true
+  config.assets.paths << Rails.root.join('/app/assets/fonts')
 end
